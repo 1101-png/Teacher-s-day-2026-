@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Teacher's Day | The Doon Girls' School</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    color: #40372f;
+}
+
+.page {
+    display: none;
+    min-height: 100vh;
+    padding: 18px;
+}
+
+.page.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: min(920px, 100%);
+    min-height: calc(100vh - 36px);
+    padding: 45px 22px 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.title,
+.theme {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+}
+
+.title {
+    font-size: clamp(65px, 12vw, 120px);
+    line-height: .82;
+    margin: 20px 0;
+}
+
+.theme {
+    font-size: clamp(52px, 9vw, 88px);
+    line-height: .9;
+    margin: 15px 0;
+}
+
+.sub {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 25px;
+    line-height: 1.35;
+}
+
+.date {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 25px 0 40px;
+}
+
+.date span {
+    padding: 9px 18px;
+    border-top: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.names {
+    width: min(650px, 100%);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 28px;
+    margin: 25px 0 85px;
+    padding: 20px 0;
+    border-top: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+}
+
+.name {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 21px;
+    padding: 5px;
+}
+
+.btn {
+    border: 0;
+    border-radius: 999px;
+    padding: 14px 25px;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    transition: .25s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.next {
+    background: #6f7e59;
+    color: white;
+}
+
+.back {
+    background: transparent;
+    border: 1px solid currentColor;
+    margin-right: 8px;
+}
+
+.nav {
+    position: absolute;
+    bottom: 25px;
+}
+
+.flower {
+    position: absolute;
+    font-size: 50px;
+    opacity: .55;
+}
+
+.a {
+    top: 40px;
+    right: 8%;
+}
+
+.b {
+    bottom: 60px;
+    left: 8%;
+}
+
+.c {
+    top: 28%;
+    left: 4%;
+    font-size: 25px;
+}
+
+.d {
+    bottom: 25%;
+    right: 5%;
+    font-size: 28px;
+}
+
+
+/* PAGE 1 — INVITATION */
+
+#p1 {
+    background: #f5eee2;
+}
+
+.invite {
+    background: #fffaf0;
+    border: 1px solid #d6c09e;
+    box-shadow: 0 20px 55px rgba(107,86,53,.15);
+}
+
+.invite .sub {
+    color: #765e47;
+    margin: 10px 0 20px;
+}
+
+
+/* PAGE 2 — FLORESTA */
+
+#p2 {
+    background: linear-gradient(135deg,#dfe8d2,#f6f1df);
+    color: #3d5137;
+}
+
+.floresta {
+    background: rgba(248,249,236,.7);
+    border: 1px solid #a5b48c;
+}
+
+
+/* PAGE 3 — HERITAGE REWORKED */
+
+#p3 {
+    background: radial-gradient(circle at 50% 10%,#e1cda8,#94704e);
+    color: #3b2c20;
+}
+
+.heritage {
+    background: #eadcc2;
+    border: 2px solid #71543a;
+    box-shadow:
+        inset 0 0 0 8px #eadcc2,
+        inset 0 0 0 9px #987650;
+}
+
+
+/* PAGE 4 — LA DOLCE VITA */
+
+#p4 {
+    background: linear-gradient(
+        150deg,
+        #fff2bd,
+        #f7e5c5 55%,
+        #dbe8dc
+    );
+    color: #315b50;
+}
+
+.dolce {
+    background: rgba(255,251,237,.7);
+    border: 1px solid #c8aa66;
+}
+
+.lemon {
+    position: absolute;
+    font-size: 65px;
+    opacity: .45;
+}
+
+
+/* PAGE 5 — MONOCHROME */
+
+#p5 {
+    background: #101010;
+    color: #eee;
+}
+
+.mono {
+    background: #191919;
+    border: 1px solid #777;
+    box-shadow:
+        0 0 0 7px #101010,
+        0 0 0 8px #777;
+}
+
+.mono .name {
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+}
+
+.mono .next {
+    background: #eee;
+    color: #111;
+}
+
+
+/* PAGE 6 — RSVP */
+
+#p6 {
+    background: #f5eee2;
+}
+
+.rsvp {
+    background: #fffaf0;
+    border: 1px solid #d6c09e;
+}
+
+.rsvp .sub {
+    color: #765e47;
+    margin: 15px 0 28px;
+}
+
+.yes {
+    background: #71805b;
+    color: white;
+}
+
+.no {
+    background: #e9ddcc;
+    color: #5d4b39;
+    margin-left: 8px;
+}
+
+.message {
+    min-height: 35px;
+    margin-top: 18px;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 25px;
+    color: #71805b;
+}
+
+
+/* CONFETTI */
+
+.confetti {
+    position: fixed;
+    top: -20px;
+    z-index: 100;
+    font-size: 20px;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(600deg);
+        opacity: 0;
+    }
+}
+
+
+/* MOBILE */
+
+@media(max-width:600px) {
+
+    .page {
+        padding: 10px;
+    }
+
+    .card {
+        min-height: calc(100vh - 20px);
+        padding: 35px 15px 80px;
+    }
+
+    .names {
+        grid-template-columns: 1fr;
+        gap: 2px;
+    }
+
+    .name {
+        font-size: 19px;
+    }
+
+    .title {
+        font-size: 72px;
+    }
+
+    .sub {
+        font-size: 22px;
+    }
+
+    .flower {
+        font-size: 35px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- ================= PAGE 1 ================= -->
+
+<section class="page active" id="p1">
+
+<div class="card invite">
+
+<span class="flower a">❁</span>
+<span class="flower b">✿</span>
+<span class="flower c">✧</span>
+<span class="flower d">❀</span>
+
+<div class="eyebrow">
+The Doon Girls' School Students' Association
+</div>
+
+<div class="sub">
+cordially invites you to
+</div>
+
+<h1 class="title">
+Teacher's<br>Day
+</h1>
+
+<div class="sub">
+A celebration of the teachers who inspire,
+guide & shape us.
+</div>
+
+<div class="date">
+<span>05 SEPTEMBER</span>
+<span>AMPHITHEATRE</span>
+</div>
+
+<button class="btn next" onclick="go(2)">
+Enter the Invitation ♡
+</button>
+
+</div>
+</section>
+
+
+<!-- ================= PAGE 2 ================= -->
+
+<section class="page" id="p2">
+
+<div class="card floresta">
+
+<span class="flower a">❀</span>
+<span class="flower b">🌿</span>
+<span class="flower c">✿</span>
+
+<div class="eyebrow">
+Theme I
+</div>
+
+<h2 class="theme">
+Floresta
+</h2>
+
+<div class="sub">
+Where nature meets elegance.
+</div>
+
+<div class="names">
+
+<div class="name">Ms. Nikita</div>
+<div class="name">Ms. Pooja</div>
+<div class="name">Ms. Shivangi</div>
+<div class="name">Ms. Muskan</div>
+<div class="name">Ms. Shraddha</div>
+<div class="name">Ms. Gayatri</div>
+<div class="name">Ms. Gunjan</div>
+<div class="name">Ms. Apoorva</div>
+<div class="name">Mrs. Geeta</div>
+<div class="name">Ms. Aratrika</div>
+<div class="name">Mrs. Sheetal</div>
+
+</div>
+
+<div class="nav">
+
+<button class="btn back" onclick="go(1)">
+Back
+</button>
+
+<button class="btn next" onclick="go(3)">
+Next Theme →
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= PAGE 3 ================= -->
+
+<section class="page" id="p3">
+
+<div class="card heritage">
+
+<span class="flower a">❦</span>
+<span class="flower b">❧</span>
+
+<div class="eyebrow">
+Theme II
+</div>
+
+<h2 class="theme">
+Heritage Reworked
+</h2>
+
+<div class="sub">
+Old-world character, reimagined.
+</div>
+
+<div class="names">
+
+<div class="name">Ms. Monisha</div>
+<div class="name">Mrs. Shikha</div>
+<div class="name">Mrs.mezhu</div>
+<div class="name">Mrs. Reena</div>
+<div class="name">Ms. Nandini</div>
+<div class="name">Mrs. Kirti</div>
+<div class="name">Mrs. Monica</div>
+<div class="name">Mrs. Mahima</div>
+<div class="name">Ms. binesh</div>
+<div class="name">Mrs. Anshika</div>
+<div class="name">Mrs. Jyoti tadiyal</div>
+
+</div>
+
+<div class="nav">
+
+<button class="btn back" onclick="go(2)">
+Back
+</button>
+
+<button class="btn next" onclick="go(4)">
+Next Theme →
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= PAGE 4 ================= -->
+
+<section class="page" id="p4">
+
+<div class="card dolce">
+
+<span class="lemon" style="top:45px;left:7%">
+🍋
+</span>
+
+<span class="lemon" style="bottom:65px;right:7%">
+🍋
+</span>
+
+<span class="flower c">✿</span>
+<span class="flower d">☀</span>
+
+<div class="eyebrow">
+Theme III
+</div>
+
+<h2 class="theme">
+La Dolce Vita
+</h2>
+
+<div class="sub">
+The sweet life — sunshine, lemons & summer.
+</div>
+
+<div class="names">
+
+<div class="name">Mr. Kailash</div>
+<div class="name">Mr. Shivam</div>
+<div class="name">Mr. Gurung</div>
+<div class="name">Mr. Jagbir</div>
+<div class="name">Mr. Girish</div>
+<div class="name">Mr. Allen</div>
+<div class="name">Mr. Amit</div>
+<div class="name">Mr. Laxmikant Bhatt</div>
+<div class="name">Mr. Mukesh</div>
+<div class="name">Mr. Pitamber</div>
+<div class="name">Mr. Mayank</div>
+
+</div>
+
+<div class="nav">
+
+<button class="btn back" onclick="go(3)">
+Back
+</button>
+
+<button class="btn next" onclick="go(5)">
+Next Theme →
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= PAGE 5 ================= -->
+
+<section class="page" id="p5">
+
+<div class="card mono">
+
+<span class="flower a">◇</span>
+<span class="flower b">✦</span>
+
+<div class="eyebrow">
+Theme IV
+</div>
+
+<h2 class="theme">
+Monochrome
+</h2>
+
+<div class="sub">
+Where simplicity speaks.
+</div>
+
+<div class="names">
+
+<div class="name">Mrs. Meena</div>
+<div class="name">Mrs. Shobha</div>
+<div class="name">Mrs. Shuchi</div>
+<div class="name">Mrs. Supriya</div>
+<div class="name">Mrs. Kiran</div>
+<div class="name">Mrs. Jyoti Verma</div>
+<div class="name">Mrs. mamta</div>
+<div class="name">Ms. Pavitra</div>
+
+</div>
+
+<div class="nav">
+
+<button class="btn back" onclick="go(4)">
+Back
+</button>
+
+<button class="btn next" onclick="go(6)">
+The Final Invitation →
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- ================= PAGE 6 ================= -->
+
+<section class="page" id="p6">
+
+<div class="card rsvp">
+
+<span class="flower a">❁</span>
+<span class="flower b">✿</span>
+
+<div class="eyebrow">
+One little question...
+</div>
+
+<h2 class="theme">
+We Invite You
+</h2>
+
+<div class="sub">
+Will you join us for Teacher's Day?
+</div>
+
+<div class="date">
+<span>05 SEPTEMBER</span>
+<span>AMPHITHEATRE</span>
+</div>
+
+<div>
+
+<button class="btn yes" onclick="accept()">
+YES, I'LL BE THERE 💐
+</button>
+
+<button class="btn no" id="no" onclick="nope()">
+NO
+</button>
+
+</div>
+
+<div class="message" id="msg"></div>
+
+<div class="nav">
+
+<button class="btn back" onclick="go(5)">
+Back
+</button>
+
+</div>
+
+</div>
+</section>
+
+
+<script>
+
+/* PAGE NAVIGATION */
+
+function go(number) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
+
+    document
+        .getElementById("p" + number)
+        .classList.add("active");
+
+    window.scrollTo(0,0);
+}
+
+
+/* NO BUTTON */
+
+function nope() {
+
+    const button =
+        document.getElementById("no");
+
+    button.style.transform =
+        "translate(" +
+        (Math.random() * 180 - 90) +
+        "px," +
+        (Math.random() * 70 - 35) +
+        "px)";
+
+    document.getElementById("msg")
+        .textContent =
+        "That option seems to have disappeared... 😭🌸";
+
+    setTimeout(function() {
+
+        button.style.display = "none";
+
+    },700);
+}
+
+
+/* YES BUTTON */
+
+function accept() {
+
+    document.getElementById("msg")
+        .textContent =
+        "YOU'RE OFFICIALLY INVITED! ♡";
+
+    for(let i = 0; i < 55; i++) {
+
+        const flower =
+            document.createElement("span");
+
+        flower.className = "confetti";
+
+        flower.textContent =
+            ["✿","❀","🌸","✧","♥"]
+            [Math.floor(Math.random()*5)];
+
+        flower.style.left =
+            Math.random() * 100 + "vw";
+
+        flower.style.animationDelay =
+            Math.random() * 1.2 + "s";
+
+        document.body.appendChild(flower);
+
+        setTimeout(function() {
+            flower.remove();
+        },4200);
+    }
+}
+
+</script>
+
+</body>
+</html>
